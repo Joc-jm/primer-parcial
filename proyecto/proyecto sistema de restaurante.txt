@@ -1,0 +1,46 @@
+// Menú de restaurante
+let menu = {
+  1: { nombre: "Hamburguesa", precio: 120 }, // en lempiras
+  2: { nombre: "Pizza", precio: 150 },
+  3: { nombre: "Ensalada", precio: 90 },
+  4: { nombre: "Refresco", precio: 25 }
+};
+
+let pedido = []; // Aquí se guardan los productos seleccionados
+let seguir = true;
+
+// Mostrar el menú en consola
+function mostrarMenu() {
+  console.log("=== Menú del Restaurante ===");
+  console.log("1. Hamburguesa - L120");
+  console.log("2. Pizza       - L150");
+  console.log("3. Ensalada    - L90");
+  console.log("4. Refresco    - L25");
+  console.log("0. Terminar pedido");
+}
+
+// Ciclo para que el usuario pueda hacer su pedido
+while (seguir) {
+  mostrarMenu();
+  let opcion = prompt("Escribe el número del producto que deseas pedir:");
+
+  if (opcion === "0") {
+    seguir = false;
+  } else if (menu[opcion]) {
+    pedido.push(menu[opcion]);
+    console.log("Agregaste: " + menu[opcion].nombre);
+  } else {
+    console.log("Opción no válida. Intenta de nuevo.");
+  }
+}
+
+// Mostrar resumen del pedido
+let total = 0;
+console.log("\n=== Tu Pedido ===");
+for (let i = 0; i < pedido.length; i++) {
+  console.log((i + 1) + ". " + pedido[i].nombre + " - L" + pedido[i].precio);
+  total += pedido[i].precio;
+}
+
+console.log("\nTotal a pagar: L" + total);
+console.log("¡Gracias por tu compra!");
