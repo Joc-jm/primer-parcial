@@ -1,0 +1,57 @@
+let rows1 = parseInt(prompt("Ingrese tamaño de filas de la matriz 1:"));
+let cols1 = parseInt(prompt("Ingrese tamaño de columnas de la matriz 1:"));
+let rows2 = parseInt(prompt("Ingrese tamaño de filas de la matriz 2:"));
+let cols2 = parseInt(prompt("Ingrese tamaño de columnas de la matriz 2:"));
+
+
+if (cols1 !== rows2) {
+  console.log("Error: No se pueden multiplicar. Las columnas de la primera matriz deben coincidir con las filas de la segunda.");
+} else {
+  
+  let max = 10;
+  let min = -10;
+
+  
+  function generarMatriz(filas, columnas) {
+    let matriz = [];
+    for (let i = 0; i < filas; i++) {
+      let fila = [];
+      for (let j = 0; j < columnas; j++) {
+        let numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+        fila.push(numeroAleatorio);
+      }
+      matriz.push(fila);
+    }
+    return matriz;
+  }
+
+ 
+  let matrix1 = generarMatriz(rows1, cols1);
+  let matrix2 = generarMatriz(rows2, cols2);
+
+  
+  let matrixResult = [];
+  for (let i = 0; i < rows1; i++) {
+    matrixResult[i] = [];
+    for (let j = 0; j < cols2; j++) {
+      matrixResult[i][j] = 0;
+    }
+  }
+
+
+  for (let i = 0; i < rows1; i++) {
+    for (let j = 0; j < cols2; j++) {
+      for (let k = 0; k < cols1; k++) {
+        matrixResult[i][j] += matrix1[i][k] * matrix2[k][j];
+      }
+    }
+  }
+
+
+  console.log("Matriz 1:");
+  console.table(matrix1);
+  console.log("Matriz 2:");
+  console.table(matrix2);
+  console.log("Resultado de la multiplicación:");
+  console.table(matrixResult);
+}
